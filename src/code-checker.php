@@ -88,8 +88,9 @@ class CodeChecker extends Nette\Object
 	{
 		set_time_limit(0);
 
-		$this->useColors = PHP_SAPI === 'cli' && ((function_exists('posix_isatty') && posix_isatty(STDOUT))
-				|| getenv('ConEmuANSI') === 'ON' || getenv('ANSICON') !== FALSE || getenv('term') === 'xterm-256color');
+//		$this->useColors = PHP_SAPI === 'cli' && ((function_exists('posix_isatty') && posix_isatty(STDOUT))
+//				|| getenv('ConEmuANSI') === 'ON' || getenv('ANSICON') !== FALSE || getenv('term') === 'xterm-256color');
+		$this->useColors = TRUE;
 
 		if ($this->readOnly) {
 			echo "Running in read-only mode\n";
@@ -105,7 +106,8 @@ class CodeChecker extends Nette\Object
 
 		foreach ($files as $file)
 		{
-			echo str_pad(str_repeat('.', $counter++ % 40), 40), "\x0D";
+//			echo str_pad(str_repeat('.', $counter++ % 40), 40), "\x0D";
+//			$this->write('OK', 'message', NULL, 'green');
 
 			$orig = $s = file_get_contents($file);
 			$this->file = ltrim(substr($file, strlen($path)), '/\\');
